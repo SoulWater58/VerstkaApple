@@ -1,0 +1,37 @@
+.timer {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+.timer_item {
+    flex: 0 0 80px;
+    text-align: center;
+}
+.timer_unit {
+    background-color: #A3B6C7;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 26px;
+    color: #FFFFFF;
+    padding: 8px;
+    margin-bottom: 4px;
+}
+.timer_unit-description {
+    font-weight: 300;
+}
+@media (min-width: 1024px) {
+    .timer {
+        gap: 8px;
+    }
+    .timer_item {
+        flex-basis: 120px;
+    }
+    .timer_unit {
+        padding: 11px;
+        font-size: 40px;
+        margin-bottom: 8px;
+    }
+    .timer_unit-description {
+        font-size: 20px;
+    }
+}
