@@ -44,6 +44,7 @@
     .banner {
         padding: 120px 0px 160px;
         background-image: url('../image/bg-lap.jpg');
+        margin-bottom: 70px;
     }
     .banner_content {
         max-width: 510px;

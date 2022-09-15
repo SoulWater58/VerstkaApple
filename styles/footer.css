@@ -8,12 +8,12 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
+    margin-bottom: 40px;
 }
 .footer_logo {
     margin-bottom: 30px;
 }
 .footer_navigation {
-    margin-bottom: 40px;
     flex-basis: 100%;
 }
 .footer_navigation>.navigation_list {

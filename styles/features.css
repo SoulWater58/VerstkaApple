@@ -1,5 +1,5 @@
 .features {
-    padding: 40px 0;
+    padding: 40px 0 80px;
     text-align: center;
 }
 .features_tagline {
@@ -49,7 +49,6 @@
         width: 276px;
         height: 302px;
         margin: 0 52px 0 auto;
-
     }
 }
 @media (min-width: 1024px) {

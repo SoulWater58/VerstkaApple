@@ -6,8 +6,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ProApple - товары Apple</title>
         <link rel="icon" href="image/svg/favicon.svg" type="img/svg+xml">
+        <link rel="stylesheet" href="lib/swiper-bundle.min.css">
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/default.css">
+        <!-- <script src="scipts/index.js" type="module"></script> -->
+        <script type="module">
+            import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
+            new Swiper('.goods_block', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 24,
+                    },
+                    1440: {
+                        slidesPerView: 3,
+                        spaceBetween: 24,
+                    },
+                },
+                navigation: {
+                    prevEl: '.goods_arrow_prev',
+                    nextEl: '.goods_arrow_next'
+                }
+            });
+        </script>
     </head>
     <body>
         <header class="header">
@@ -67,9 +96,9 @@
                     <p class="goods_tagline">Вы ждали этого</p>
                     <h2 class="goods_title">Все продукты новой линейки</h2>
                     <div class="goods_helper">
-                        <div class="goods_block">
-                            <ul class="goods_list">
-                                <li class="goods_item">
+                        <div class="goods_block swiper">
+                            <ul class="goods_list swiper-wrapper">
+                                <li class="goods_item swiper-slide">
                                     <article class="goods_product product">
                                         <div class="product_image-wrapper">
                                             <img src="image/iPhone14-pro.png" alt="iPhon 14 PRO" class="product_image" width="200" height="200">
@@ -81,7 +110,7 @@
                                         <button class="product_more">Узнать больше</button>
                                     </article>
                                 </li>
-                                <li class="goods_item">
+                                <li class="goods_item swiper-slide">
                                     <article class="goods_product product">
                                         <div class="product_image-wrapper">
                                             <img src="image/iPhone14.png" alt="iPhon 14" class="product_image" width="200" height="200">
@@ -93,7 +122,7 @@
                                         <button class="product_more">Узнать больше</button>
                                     </article>
                                 </li>
-                                <li class="goods_item">
+                                <li class="goods_item swiper-slide">
                                     <article class="goods_product product">
                                         <div class="product_image-wrapper">
                                             <img src="image/AirPodsPro.png" alt="AirPods Pro" class="product_image" width="200" height="200">
@@ -105,7 +134,7 @@
                                         <button class="product_more">Узнать больше</button>
                                     </article>
                                 </li>
-                                <li class="goods_item">
+                                <li class="goods_item swiper-slide">
                                     <article class="goods_product product">
                                         <div class="product_image-wrapper">
                                             <img src="image/applewatchultra.png" alt="Apple Watch Ultra" class="product_image" width="200" height="200">
@@ -117,7 +146,7 @@
                                         <button class="product_more">Узнать больше</button>
                                     </article>
                                 </li>
-                                <li class="goods_item">
+                                <li class="goods_item swiper-slide">
                                     <article class="goods_product product">
                                         <div class="product_image-wrapper">
                                             <img src="image/applewatchseries8.png" alt="Apple Watch Series 8" class="product_image" width="200" height="200">
@@ -130,16 +159,16 @@
                                     </article>
                                 </li>
                             </ul>
-                            <button class="goods_arrow goods_arrow_prev"></button>
-                            <button class="goods_arrow goods_arrow_next"></button>
                         </div>
+                        <button class="goods_arrow goods_arrow_prev"></button>
+                        <button class="goods_arrow goods_arrow_next"></button>
                     </div>
                 </div>
             </section>
             <section class="features" id="features">
                 <div class="container">
                     <p class="features_tagline">Мы становимся лучше. Для вас</p>
-                    <h2 class="features_title">Характеристики iPhone 14</h2>
+                    <h2 class="features_title">Характеристики iPhone&nbsp;14</h2>
                     <div class="features_wrapper">
                         <img src="image/iPhone.png" alt="" class="features_image">
                         <ul class="features_list">
