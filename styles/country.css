@@ -1,5 +1,5 @@
-.country_list {
-    display: none;
+.country {
+    position: relative;
 }
 .country_btn {
     position: relative;
@@ -15,4 +15,52 @@
     width: 9px;
     height: 6px; 
     background: url('../image/svg/arrow-down.svg') no-repeat center;
+}
+.country_wrapper {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 184px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 16px 8px 16px 16px;
+    display: none;
+}
+.country_wrapper_open {
+    display: block;
+}
+.country_list {
+    max-height: 102px;
+}
+.country_item {
+    margin-bottom: 10px;
+}
+.country_item:last-child {
+    margin-bottom: 0;
+}
+.country_choise {
+    font-weight: 300;
+    font-size: 14px;
+}
+.country_track {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    overflow: hidden;
+    width: 4px;
+}
+.country_scrollbar {
+    background-color: #ECECEC;
+    border-radius: 2px;
+}
+@media (min-width: 1024px) {
+    .country_list {
+        max-height: 120px;
+    }
+    .country_choise {
+        font-size: 16px;
+    }
 }

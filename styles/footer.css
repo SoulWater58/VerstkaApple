@@ -35,9 +35,6 @@
     .footer_navigation>.navigation_list {
         display: flex;
     }
-    .footer_navigation>.navigation_list>.navigation_item {
-        padding: 18px 0 0;
-    }
 }
 @media (min-width: 1024px) {
     .footer_copyright {

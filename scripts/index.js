@@ -1,5 +1,4 @@
 import Swiper from '../lib/swiper-bundle.esm.browser.min.js';
-
 new Swiper('.goods_block', {
     slidesPerView: 1,
     spaceBetween: 20,

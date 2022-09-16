@@ -7,11 +7,20 @@
         <title>ProApple - товары Apple</title>
         <link rel="icon" href="image/svg/favicon.svg" type="img/svg+xml">
         <link rel="stylesheet" href="lib/swiper-bundle.min.css">
+        <link rel="stylesheet" href="lib/simplebar.css">
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/default.css">
+        <script src="lib/simplebar.min.js" defer></script>
         <!-- <script src="scipts/index.js" type="module"></script> -->
         <script type="module">
             import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
+            new SimpleBar(document.querySelector('.country_list'), {
+                classNames: {
+                    scrollbar: 'country_scrollbar',
+                    track: 'country_track'
+                }
+            });
+            //slider
             new Swiper('.goods_block', {
                 slidesPerView: 1,
                 spaceBetween: 20,
@@ -34,6 +43,76 @@
                 navigation: {
                     prevEl: '.goods_arrow_prev',
                     nextEl: '.goods_arrow_next'
+                },
+                preventClicks: true,
+                a11y: false,
+            });
+            //modal
+            const productMore = document.querySelectorAll('.product_more');
+            const modal = document.querySelector('.modal');
+            productMore.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('modal_open');
+                });
+            });
+            modal.addEventListener('click', ({target}) => {
+                if (target === modal) {
+                    modal.classList.remove('modal_open');
+                }
+            });
+            const formPlaceholder = document.querySelectorAll('.form_placeholder');
+            const formInput = document.querySelectorAll('.form_input')
+            formInput.forEach((input, i) => {
+                input.addEventListener('focus', () => {
+                    formPlaceholder[i].classList.add('form_placeholder_active');
+                });
+                input.addEventListener('blur', () => {
+                    if (input.value === '') {
+                        formPlaceholder[i].classList.remove('form_placeholder_active');
+                    }
+                });
+            });
+            //price
+            const dataCurrency = {};
+            const formatCurrency = (value, currency) => {
+                return new Intl.NumberFormat('EU', {
+                    style: 'currency',
+                    currency,
+                    maximumFractionDigits: 2,
+                }).format(value)
+            }
+            const showPrice = (currency = 'USD') => {
+                const priceElems = document.querySelectorAll('[data-price');
+                priceElems.forEach(elem => {
+                    elem.textContent = formatCurrency(elem.dataset.price * dataCurrency[currency], currency);
+                });
+            }
+            const myHeaders = new Headers();
+            myHeaders.append("apikey", "Fj0rqCF6j6Fo7xYcdxYimSYtjlIcf656");
+
+            const requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers: myHeaders
+            };
+
+            fetch("https://api.apilayer.com/fixer/latest?base=USD", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                Object.assign(dataCurrency, result.rates)
+                showPrice()
+            })
+            .catch(error => console.log('error', error));
+            //choises
+            const countryBtn = document.querySelector('.country_btn');
+            const countryWrapper = document.querySelector('.country_wrapper');
+            countryBtn.addEventListener('click', () => {
+                countryWrapper.classList.toggle('country_wrapper_open');
+            });
+            countryWrapper.addEventListener('click', ({target}) => {
+                if (target.classList.contains('country_choise')) {
+                    countryWrapper.classList.remove('country_wrapper_open');
+                    showPrice(target.dataset.currency);
                 }
             });
         </script>
@@ -50,20 +129,31 @@
                 </nav>
                 <div class="header_country country">
                     <button class="country_btn">Страна</button>
-                    <ul class="country_list">
-                        <li class="country_item">
-                            <button class="country_btn">Russia, RUB</button>
-                        </li>
-                        <li class="country_item">
-                            <button class="country_btn">USA, USD</button>
-                        </li>
-                        <li class="country_item">
-                            <button class="country_btn">Germany, EURO</button>
-                        </li>
-                        <li class="country_item">
-                            <button class="country_btn">Great Britain, GBP</button>
-                        </li>
-                    </ul>
+                    <div class="country_wrapper">
+                        <ul class="country_list">
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="RUB">Russia, RUB</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="USD">USA, USD</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="EUR">Germany, EUR</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="GBP">Great Britain, GBP</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="AUD">Australia, AUD</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="KZT">Kazakhstan, KZT</button>
+                            </li>
+                            <li class="country_item">
+                                <button class="country_choise" data-currency="UAH">Ukraine, UAH</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </header>
@@ -105,7 +195,7 @@
                                         </div>
                                         <div class="product_info">
                                             <h3 class="product_title">iPhone 14 PRO</h3>
-                                            <p class="product_price">$1050</p>
+                                            <p class="product_price" data-price="1050">$1050</p>
                                         </div>
                                         <button class="product_more">Узнать больше</button>
                                     </article>
@@ -117,7 +207,7 @@
                                         </div>
                                         <div class="product_info">
                                             <h3 class="product_title">iPhone 14</h3>
-                                            <p class="product_price">$799</p>
+                                            <p class="product_price" data-price="799">$799</p>
                                         </div>
                                         <button class="product_more">Узнать больше</button>
                                     </article>
@@ -129,7 +219,7 @@
                                         </div>
                                         <div class="product_info">
                                             <h3 class="product_title">AirPods Pro</h3>
-                                            <p class="product_price">$249</p>
+                                            <p class="product_price" data-price="249">$249</p>
                                         </div>
                                         <button class="product_more">Узнать больше</button>
                                     </article>
@@ -141,7 +231,7 @@
                                         </div>
                                         <div class="product_info">
                                             <h3 class="product_title">Apple Watch Ultra</h3>
-                                            <p class="product_price">$799</p>
+                                            <p class="product_price" data-price="799">$799</p>
                                         </div>
                                         <button class="product_more">Узнать больше</button>
                                     </article>
@@ -153,7 +243,7 @@
                                         </div>
                                         <div class="product_info">
                                             <h3 class="product_title">Apple Watch Series 8</h3>
-                                            <p class="product_price">$399</p>
+                                            <p class="product_price" data-price="399">$399</p>
                                         </div>
                                         <button class="product_more">Узнать больше</button>
                                     </article>
@@ -207,5 +297,21 @@
                 <p class="footer_copyright">Copyright © 2022 ProApple</p>
             </div>
         </footer>
+        <div class="modal">
+            <div class="modal_wrapper">
+                <h2 class="modal_title">Узнай все о новом iPhone 14</h2>
+                <form class="modal_form form">
+                    <label class="form_label">
+                        <span class="form_placeholder">Ваше имя</span>
+                        <input type="text" class="form_input">
+                    </label>
+                    <label class="form_label">
+                        <span class="form_placeholder">Телефон</span>
+                        <input type="text" class="form_input">
+                    </label>
+                    <button class="form_submit" type="submit">Заказать консультацию</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
