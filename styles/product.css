@@ -38,6 +38,13 @@
     height: 8px; 
     background: url('../image/svg/arrow-blue.svg') no-repeat center;
 }
+.product_more:hover,
+.product_more:focus {
+    color: #0017E6;
+}
+.product_more:active {
+    color: #CCCCCC;
+}
 @media (min-width: 768px) {
     .product {
         width: 340px;

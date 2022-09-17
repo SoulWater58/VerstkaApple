@@ -37,6 +37,13 @@
     height: 46px;
     width: 225px;
 }
+.form_submit:hover,
+.form_submit:focus {
+    background-color: #8793FF;
+}
+.form_submit:active {
+    background-color: #CCCCCC;
+}
 @media (min-width: 1024px)  {
     .form {
         flex-direction: row;

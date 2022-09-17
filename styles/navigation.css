@@ -2,6 +2,11 @@
     display: flex;
     gap: 50px;
 }
+.navigation_item:hover,
+.navigation_item:focus,
+.navigation_item:active {
+    color: #2238FF;
+}
 @media (min-width: 1024px) {
     .navigation_list {
         gap: 84px;

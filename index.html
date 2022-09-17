@@ -115,6 +115,43 @@
                     showPrice(target.dataset.currency);
                 }
             });
+            const declOfNum = (n, titles) => titles[n % 10 === 1 && n % 10 !== 11 ?
+             0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
+            const timer = deadline => {
+                const unitDay = document.querySelector('.timer_unit_day')
+                const unitHour = document.querySelector('.timer_unit_hour')
+                const unitMinute = document.querySelector('.timer_unit_minute')
+                const descriptionDay = document.querySelector('.timer_unit-description_day')
+                const descriptionHour = document.querySelector('.timer_unit-description_hour')
+                const descriptionMinute = document.querySelector('.timer_unit-description_minute')
+                const getTimerRemaning = () => {
+                    const dateStop = new Date(deadline).getTime();
+                    const dateNow = Date.now();
+                    const timeRemaning = dateStop - dateNow;
+                    const minutes = Math.floor(timeRemaning / 1000 / 60 % 60);
+                    const hours = Math.floor(timeRemaning / 1000 / 60 / 60 % 24);
+                    const days = Math.floor(timeRemaning / 1000 / 60 / 60 / 24);
+                    return {timeRemaning, minutes, hours, days};
+                };
+                const start = () => {
+                    const timer = getTimerRemaning();
+                    unitDay.textContent = timer.days;
+                    unitHour.textContent = timer.hours;
+                    unitMinute.textContent = timer.minutes;
+                    descriptionDay.textContent = declOfNum(timer.days, ['день', 'дня', 'дней']);
+                    descriptionHour.textContent = declOfNum(timer.hours, ['час', 'часа', 'часов']);
+                    descriptionMinute.textContent = declOfNum(timer.minutes, ['минута', 'минуты', 'минут']);
+                    const timerId = setTimeout(start, 60000);
+                    if (timer.timeRemaning < 0) {
+                        clearTimeout(timerId);
+                        unitDay.textContent = '0';
+                        unitHour.textContent = '0';
+                        unitMinute.textContent = '0';
+                    };
+                };
+                start();
+            };
+            timer('2023/09/07 20:00');
         </script>
     </head>
     <body>
@@ -165,16 +202,16 @@
                         <h2 class="banner_subtitle">До конца скидок осталось</h2>
                         <ul class="banner_timer timer">
                             <li class="timer_item">
-                                <p class="timer_unit">364</p>
-                                <p class="timer_unit-description">дня</p>
+                                <p class="timer_unit timer_unit_day">364</p>
+                                <p class="timer_unit-description timer_unit-description_day">дня</p>
                             </li>
                             <li class="timer_item">
-                                <p class="timer_unit">23</p>
-                                <p class="timer_unit-description">часа</p>
+                                <p class="timer_unit timer_unit_hour">23</p>
+                                <p class="timer_unit-description timer_unit-description_hour">часа</p>
                             </li>
                             <li class="timer_item">
-                                <p class="timer_unit">45</p>
-                                <p class="timer_unit-description">минут</p>
+                                <p class="timer_unit timer_unit_minute">45</p>
+                                <p class="timer_unit-description timer_unit-description_minute">минут</p>
                             </li>
                         </ul>
                         <a href="#goods" class="banner_btn">Выбери свою модель</a>

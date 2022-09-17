@@ -56,6 +56,14 @@
     background-color: #ECECEC;
     border-radius: 2px;
 }
+.country_choise:hover,
+.country_choise:focus,
+.country_choise:active,
+.country_btn:hover,
+.country_btn:focus,
+.country_btn:active {
+    color: #2238FF;
+}
 @media (min-width: 1024px) {
     .country_list {
         max-height: 120px;

@@ -29,6 +29,15 @@
     font-size: 14px;
     line-height: 100%;
 }
+.banner_btn:hover,
+.banner_btn:focus {
+    background-color: #2238FF;
+    color: white;
+}
+.banner_btn:active {
+    background-color: #CCCCCC;
+    color: white;
+}
 @media (min-width: 768px) {
     .banner {
         padding: 60px 0px 90px;
